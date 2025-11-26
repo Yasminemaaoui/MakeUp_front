@@ -1,0 +1,43 @@
+<div class="container">
+  <div>
+    <h2>Ajouter un Produit Make up :</h2>
+  </div>
+  <form>
+
+    <div class="col-sm-2 col-md-2 col-lg-2" hidden>
+      <label>code Produit</label>
+      <input type="text" [(ngModel)]="newMakeUp.code_produit" name="idProduit" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>designation</label>
+      <input type="text" [(ngModel)]="newMakeUp.designation" name="nomProduit" class="form-control">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Tarif</label>
+      <input type="number" [(ngModel)]="newMakeUp.tarif" name="prixProduit" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date Expiration</label>
+      <input type="date" [(ngModel)]="newMakeUp.date_expiration" name="dateCreation" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Marque</label>
+      <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)]="newIdMrq">
+        @for(mrq of marques; track mrq.id_marque){
+        <option [value]="mrq.id_marque"> {{mrq.nom_marque}} </option>
+        }
+      </select>
+    </div>
+
+    <div class="mt-2">
+      <button type="submit" (click)="addProduitMakeUp()" class="btn btn-success">Ajouter</button>
+    </div>
+
+    <div class="mt-2">
+      <h3>{{message}}</h3>
+    </div>
+  </form>
+</div>

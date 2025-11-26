@@ -1,0 +1,40 @@
+<div class="container">
+    <div>
+        <h2>Modifier un Produit :</h2>
+    </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Produit</label>
+            <input type="text" [(ngModel)]="currentProduit.code_produit" name="idProduit" class="form-control"t readonly>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Produit</label>
+            <input type="text" [(ngModel)]="currentProduit.designation" name="nomProduit" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Produit</label>
+            <input type="number" [(ngModel)]="currentProduit.tarif" name="prixProduit" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date création</label>
+            <input type="date" [ngModel]="currentProduit.date_expiration | date: 'yyyy-MM-dd'"
+                (ngModelChange)=" currentProduit.date_expiration= $event" name="date_expiration" class="form-control">
+        </div>
+        
+        <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Marque</label>
+        <select class="form-control form-control-lg" id="idCat" name="idCat"
+        [(ngModel)]="updatedMrqId">
+        @for(mrq of marques; track mrq.id_marque)
+        {
+        <option [value]="mrq.id_marque"> {{mrq.nom_marque}} </option>
+        }
+        </select>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" (click)="updateProduit()" class="btn btn-success">Modifer</button>
+        </div>
+
+    </form>
+</div>

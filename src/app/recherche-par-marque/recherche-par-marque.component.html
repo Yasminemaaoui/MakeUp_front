@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="container">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <select class="form-control form-control-lg" id="idCat" name="idCat" 
+                    [(ngModel)]="newIdMrq" (change)="onChange()">
+                <!-- Vérifiez que marques existe avant de boucler -->
+                @if(marques && marques.length > 0) {
+                  @for(mrq of marques; track mrq.id_marque){
+                    <option [value]="mrq.id_marque"> {{mrq.nom_marque}} </option>
+                  }
+                } @else {
+                  <option value="">Chargement des marques...</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                @if(produits && produits.length > 0){
+                <thead>
+                    <tr>
+                        <th>index</th>
+                        <th>code_produit</th>
+                        <th>Designation</th>
+                        <th>Tarif</th>
+                        <th>Date Expiration</th>
+                        <th>Marque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (produit of produits; track produit.code_produit; let index =$index;let nbr=$count;let first = $first;let last = $last) {
+                    <tr>
+                        <td>{{index +1}}</td>
+                        <td>{{produit.code_produit}}</td>
+                        <td>{{produit.designation}}</td>
+                        <td>{{produit.tarif}}</td>
+                        <td>{{produit.date_expiration | date:'dd/MM/yyyy'}}</td>
+                        <td>{{produit.marque.nom_marque}}</td>
+                    </tr>
+                    @if(last) {
+                    <tr>
+                        <td colspan="6"><h1>Nombre : {{nbr}}</h1></td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+                } @else {
+                <tr>
+                    <td colspan="6">
+                        <h1>Aucun produit trouvé !</h1>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
